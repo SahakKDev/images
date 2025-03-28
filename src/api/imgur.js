@@ -1,3 +1,4 @@
+import axios from "axios";
 import qs from "qs";
 
 const CLIENT_ID = "9cd162af7ebd72e";
@@ -13,5 +14,12 @@ export default {
     window.location = `${ROOT_URL}/oauth2/authorize?${qs.stringify(
       queryString
     )}`;
+  },
+  fetchImages(accessToken) {
+    return axios.get(`${ROOT_URL}/3/account/me/images`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   },
 };
